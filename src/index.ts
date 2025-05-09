@@ -4,11 +4,11 @@
 //   \ V /  __/ |  | | (_) \__ \ |_| | | | | (_| |
 //    \_/ \___|_|  |_|\___/|___/\__,_|_| |_|\__, |
 
-import { AbsneakenderHase } from "./absneakender-hase.js";
-import { GewinnbarerHase } from "./gewinnbarer-hase.js";
+import { Raffle } from "./raffle.js";
+import { Prize } from "./prize.js";
 
 //
-export class Verlosung {
+export class RaffleApplication {
   //  __________________________________
   // < Main-Methode des Main-Characters >
   //  ----------------------------------
@@ -31,7 +31,7 @@ export class Verlosung {
   //               __/-___-- -__
   //              /            _ \
   public main() {
-    const redArmy = [
+    const participants = [
       "@Gangsta2007",
       "@LockeDerBoss",
       "@MiiMiiSeinBruder",
@@ -66,22 +66,22 @@ export class Verlosung {
       "@LeonMachere",
       "@LeonMachere",
     ];
-    const fiktivePreise = [
-      new GewinnbarerHase("iPhone 16 Pro", 1),
-      new GewinnbarerHase("Trip nach Dubi", 1),
-      new GewinnbarerHase("Stepper nach Isti", 1),
-      new GewinnbarerHase("10 kg Haribo", 2),
-      new GewinnbarerHase("PlayStation 5 Slim", 3),
-      new GewinnbarerHase("gebrauchte Sneaker", 5),
+    const availablePrizes = [
+      new Prize("iPhone 16 Pro", 1),
+      new Prize("Trip nach Dubi", 1),
+      new Prize("Stepper nach Isti", 1),
+      new Prize("10 kg Haribo", 2),
+      new Prize("PlayStation 5 Slim", 3),
+      new Prize("gebrauchte Sneaker", 5),
     ];
-    const luckyMuckies = new AbsneakenderHase(
-      redArmy,
-      fiktivePreise,
-    ).absneaken();
-    for (const [opfer, gewonnenerHase] of luckyMuckies.entries()) {
-      console.log(`${opfer} gewinnt ${gewonnenerHase}`);
+    const winnerPrizeMap = new Raffle(
+      participants,
+      availablePrizes,
+    ).drawWinners();
+    for (const [winner, prize] of winnerPrizeMap.entries()) {
+      console.log(`${winner} gewinnt ${prize}`);
     }
   }
 }
 
-new Verlosung().main();
+new RaffleApplication().main();
