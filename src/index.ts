@@ -1,35 +1,7 @@
-// __     __        _
-// \ \   / /__ _ __| | ___  ___ _   _ _ __   __ _
-//  \ \ / / _ \ '__| |/ _ \/ __| | | | '_ \ / _` |
-//   \ V /  __/ |  | | (_) \__ \ |_| | | | | (_| |
-//    \_/ \___|_|  |_|\___/|___/\__,_|_| |_|\__, |
+import { Game } from "./absneakender-hase.js";
+import { Prize } from "./gewinnbarer-hase.js";
 
-import { AbsneakenderHase } from "./absneakender-hase.js";
-import { GewinnbarerHase } from "./gewinnbarer-hase.js";
-
-//
 export class Verlosung {
-  //  __________________________________
-  // < Main-Methode des Main-Characters >
-  //  ----------------------------------
-  //    \         __------~~-,
-  //     \      ,'            ,
-  //           /               \
-  //          /                :
-  //         |                  '
-  //         |                  |
-  //         |                  |
-  //          |   _--           |
-  //          _| =-.     .-.   ||
-  //          o|/o/       _.   |
-  //          /  ~          \ |
-  //        (____@)  ___~    |
-  //           |_===~~~.`    |
-  //        _______.--~     |
-  //        \________       |
-  //                 \      |
-  //               __/-___-- -__
-  //              /            _ \
   public main() {
     const redArmy = [
       "@Gangsta2007",
@@ -67,19 +39,19 @@ export class Verlosung {
       "@LeonMachere",
     ];
     const fiktivePreise = [
-      new GewinnbarerHase("iPhone 16 Pro", 1),
-      new GewinnbarerHase("Trip nach Dubi", 1),
-      new GewinnbarerHase("Stepper nach Isti", 1),
-      new GewinnbarerHase("10 kg Haribo", 2),
-      new GewinnbarerHase("PlayStation 5 Slim", 3),
-      new GewinnbarerHase("gebrauchte Sneaker", 5),
+      new Prize("iPhone 16 Pro", 1),
+      new Prize("Trip nach Dubi", 1),
+      new Prize("Stepper nach Isti", 1),
+      new Prize("10 kg Haribo", 2),
+      new Prize("PlayStation 5 Slim", 3),
+      new Prize("gebrauchte Sneaker", 5),
     ];
-    const luckyMuckies = new AbsneakenderHase(
+    const game = new Game(
       redArmy,
       fiktivePreise,
-    ).absneaken();
-    for (const [opfer, gewonnenerHase] of luckyMuckies.entries()) {
-      console.log(`${opfer} gewinnt ${gewonnenerHase}`);
+    ).play();
+    for (const [winner, wonItem] of game.entries()) {
+      console.log(`${winner} gewinnt ${wonItem}`);
     }
   }
 }
